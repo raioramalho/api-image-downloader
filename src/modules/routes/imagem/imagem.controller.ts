@@ -1,12 +1,20 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import ImagemService from './imagem.service';
+import { DownloadImagemDto } from './dto/download-imagem.dto';
+import { randomUUID } from 'crypto';
+import { DownloadImagemService } from './cases/download.image.service';
 
 @ApiTags('Imagem')
 @Controller('imagem')
 export class ImagemController {
-  constructor(private readonly imagemService: ImagemService) {}
+  constructor(private readonly downloadImagemService: DownloadImagemService) {}
 
-  // @Post('/')
-  // create(@Body() createImagemDto: DownloadImagemDto) {}
+  @Post('/')
+  create(@Body() createImagemDto: DownloadImagemDto): Promise<object> {
+    return this.downloadImagemService.execute(
+      createImagemDto.URL,
+      `public`,
+      `${randomUUID().toString()}.jpeg`,
+    );
+  }
 }

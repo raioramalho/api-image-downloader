@@ -22,9 +22,13 @@ describe('ImagemService', () => {
       name: 'imagem-1.jpg',
     };
 
-    const download = await service.download(imagem.src, 'public', imagem.name);
+    const download: any = await service.download(
+      imagem.src,
+      'public',
+      imagem.name,
+    );
 
-    expect(download).toBe(true);
+    expect(download.status).toBe(true);
   });
 
   it('Deve buscar uma imagem existente na pasta public', async () => {

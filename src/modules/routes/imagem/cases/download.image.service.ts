@@ -1,10 +1,12 @@
 import * as fs from 'fs';
 import axios from 'axios';
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
-export default class ImagemService {
-  async download(url: string, path: string, name: any): Promise<boolean> {
+export class DownloadImagemService {
+  constructor() {}
+  private readonly logger = new Logger(DownloadImagemService.name);
+  async execute(url: string, path: string, name: any): Promise<object> {
     try {
       fs.rm(`${path}/${name}`, () => {});
       const response = await axios.get(url, { responseType: 'stream' });
@@ -30,18 +32,9 @@ export default class ImagemService {
         );
       });
 
-      return status;
+      return { status };
     } catch (error) {
-      throw error;
-    }
-  }
-
-  async findImage(caminhoArquivo): Promise<boolean> {
-    try {
-      await fs.accessSync(caminhoArquivo);
-      return true;
-    } catch (error) {
-      return false;
+      throw new HttpException(error.message, error.status);
     }
   }
 }

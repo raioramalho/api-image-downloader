@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ImagemController } from './imagem.controller';
-import ImagemService from './imagem.service';
+import { DownloadImagemService } from './cases/download.image.service';
 
 describe('ImagemController', () => {
   let controller: ImagemController;
@@ -8,13 +8,20 @@ describe('ImagemController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ImagemController],
-      providers: [ImagemService],
+      providers: [DownloadImagemService],
     }).compile();
 
     controller = module.get<ImagemController>(ImagemController);
   });
 
-  it('should be defined', () => {
+  it('Pode ser definido', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('Deve baixar uma imagem', async () => {
+    const request: any = await controller.create({
+      URL: 'https://i.pinimg.com/564x/e0/c6/15/e0c6153b97b60a9ccb082b9768b27816.jpg',
+    });
+    expect(request.status).toBe(true);
   });
 });
