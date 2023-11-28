@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { DownloadImagemDto } from './dto/download-imagem.dto';
 import { randomUUID } from 'crypto';
 import { DownloadImagemService } from './cases/download.imagem.service';
-import { ImagemEntity } from 'src/context/imagem.entity';
+import { ImagemEntity } from 'src/context/entities/imagem.entity';
 
 @ApiTags('Imagem')
 @Controller('imagem')

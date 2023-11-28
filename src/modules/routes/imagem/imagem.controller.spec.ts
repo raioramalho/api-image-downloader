@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ImagemController } from './imagem.controller';
 import { DownloadImagemService } from './cases/download.imagem.service';
-import { ImagemEntity } from 'src/context/imagem.entity';
+import { ImagemEntity } from 'src/context/entities/imagem.entity';
 
 describe('ImagemController', () => {
   let controller: ImagemController;
