@@ -1,13 +1,12 @@
 import * as fs from 'fs';
 import axios from 'axios';
 import { HttpException, Injectable, Logger } from '@nestjs/common';
-import { ImagemEntity } from 'src/context/imagem.entity';
 
 @Injectable()
 export class DownloadImagemService {
   constructor() {}
   private readonly logger = new Logger(DownloadImagemService.name);
-  async execute(url: string, path: string, name: any): Promise<ImagemEntity> {
+  async execute(url: string, path: string, name: any): Promise<object> {
     try {
       fs.rm(`${path}/${name}`, () => {});
       const response = await axios.get(url, { responseType: 'stream' });
