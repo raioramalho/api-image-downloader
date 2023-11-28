@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ImagemController } from './imagem.controller';
-import { DownloadImagemService } from './cases/download.image.service';
+import { DownloadImagemService } from './cases/download.imagem.service';
 
 describe('ImagemController', () => {
   let controller: ImagemController;

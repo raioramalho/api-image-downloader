@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
 import { ImagemController } from './imagem.controller';
-import { DownloadImagemService } from './cases/download.image.service';
+import { DownloadImagemService } from './cases/download.imagem.service';
 import ImagemService from './cases/imagem.service';
 
 @Module({
