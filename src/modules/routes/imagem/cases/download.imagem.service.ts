@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import axios from 'axios';
 import { HttpException, Injectable, Logger } from '@nestjs/common';
-import { ImagemEntity } from 'src/context/entities/imagem.entity';
+import { ImagemEntity } from 'src/context/imagem.entity';
 
 @Injectable()
 export class DownloadImagemService {
